@@ -88,7 +88,7 @@ $ cp ~/Downloads/dxvk-1.5.1/x64/d3d*.dll ~/.steam/steam/steamapps/common/Grand T
 
 - Configure Wine with new dlls to use native, then builtin (default override) so open it up with following command:
 ```bash
-$ WINEPREFIX=/home/shuvo/.steam/steam/steamapps/compatdata/271590/pfx winecfg
+$ WINEPREFIX=/home/<user>/.steam/steam/steamapps/compatdata/271590/pfx winecfg
 ```
 ![Winecfg Applications](img/gta5_winecfg_applications.png)
 

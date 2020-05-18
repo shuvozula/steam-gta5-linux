@@ -123,6 +123,7 @@ $ cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-S
 ```bash
 $ protontricks -c 'wine ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Launcher.exe' 271590
 ```
+
 ![Launcher](img/steam_launcher_fix.png)
 
 - Now we've successfully installed the Social-Club, configued it and are done with it! This should now allow the game to start and also play online!!

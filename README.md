@@ -83,7 +83,7 @@ $ ./setup_dxvk.sh install --without-dxgi  # Do not install DXVK's DXGI implement
 ```
 - Also extract DXVF x64 dlls to game directory `~/.steam/steam/steamapps/common/Grand Theft Auto V`:
 ```bash
-$ cp ~/Downloads/dxvk-1.5.1/x64/d3d*.dll .
+$ cp ~/Downloads/dxvk-1.5.1/x64/d3d*.dll ~/.steam/steam/steamapps/common/Grand Theft Auto V/.
 ```
 
 - Configure Wine with new dlls to use native, then builtin (default override) so open it up with following command:

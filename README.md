@@ -1,9 +1,9 @@
-# Play GTA5 on Ubuntu 20.04LTS with Steam and Nvidia card
+# Play GTA5 in Linux with Steam
 
 Wine has come a long way as a windows-emulator and can even be used to play Windows games in Linux. However, for some games, its not
 an easy setup process, specifically GTA5 and its stupid %$@#&%^ launcher.
 
-These steps outline how to install and play a Windows executable GTA5 in Linux(Ubuntu) using Wine & Steam. They are not exhaustive and a work-in-progress and some of these instructions might not be in the right order yet (for the most part its quite accurate, but YMMV)
+These steps outline how to install and play a Windows executable GTA5 in Linux(tested on Ubuntu20.04LTS) using Wine & Steam. They are not exhaustive and a work-in-progress and some of these instructions might not be in the right order yet (for the most part its quite accurate, but YMMV). So read before use and understand what you need to do before venturing out too far. Always create backups when necessary.
 
 
 ## 1. Install Nvidia Driver (or AMD driver)
@@ -104,7 +104,7 @@ dxgi.customVendorId = 1002
 NOTE: This file `gta_dxvf.conf` is what's referenced in Step 6 for the GTA5 launch options in Steam.
 
 
-## 9. FIX ROCKSTAR LAUNCHER
+## 9. Fix Rockstar Launcher
 - Start GTA5 in Steam and wait for Rockstart-Launcher to hang at "installing"
 
 Now, close the launcher: we'll fix this issue now. At least starting the launcher created the basic wine directories for c_drive, etc. So we'll use that and manually install the launchers ourselves. Sad, but Rockstar sucks at addressing issues with Wine, so....here we are.
@@ -116,7 +116,7 @@ $ file-roller ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Rock
 
 - Copy the `Social-Club-Setup.exe` from Steam installation of GTA5 over to Wine installation of GTA5:
 ```bash
-$ cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-Setup.exe .local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Redistributables/SocialClub/.
+$ cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-Setup.exe ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Redistributables/SocialClub/.
 ``` 
 
 - Now start the launcher and you can then register/login for online play. Once done, close the launcher:
@@ -124,7 +124,9 @@ $ cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-S
 $ protontricks -c 'wine ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Launcher.exe' 271590
 ```
 
-- Now we've successfully installed the Social-Club, configued it and are done with it! This should now allow the game to start.
+![Launcher](img/steam_launcher_fix.png)
+
+- Now we've successfully installed the Social-Club, configued it and are done with it! This should now allow the game to start and also play online!!
 
 
 ## 10: Start and play GTA5 from Steam!

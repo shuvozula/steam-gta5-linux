@@ -8,7 +8,7 @@ These steps outline how to install and play a Windows executable GTA5 in Linux(t
 
 ## 1. Install Nvidia Driver (or AMD driver)
 ```bash
-$ sudo apt-get install nvidia-390 && sudo reboot now
+sudo apt-get install nvidia-390 && sudo reboot now
 ```
 Check that Nvidia X Server Settings recognizes the GPU with the new installed driver
 
@@ -16,36 +16,36 @@ Check that Nvidia X Server Settings recognizes the GPU with the new installed dr
 ## 2. Install Wine, Winetricks
 - Install Wine-64 bit
 ```bash
-$ sudo apt install wine64  # we need 64-bit for GTA5
+sudo apt install wine64  # we need 64-bit for GTA5
 ```
 - Install Winetricks and corefronts
 ```bash
-$ wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks 
-$ chmod +x winetricks
-$ sudo mv winetricks /usr/local/bin/.
-$ winetricks corefronts vcrun6   # winetricks has a bug where `winetricks corefronts` doesn't work, so try with multiple installables
+wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks 
+chmod +x winetricks
+sudo mv winetricks /usr/local/bin/.
+winetricks corefronts vcrun6   # winetricks has a bug where `winetricks corefronts` doesn't work, so try with multiple installables
 ```
 
 ## 3. Install Steam
 ```bash
-$ sudo apt-get install steam
+sudo apt-get install steam
 ```
 - Enabled Steam Play to allow playing Windows titles in Linux: open settings -> Steam Play (left hand panel) -> Check "Enable Steam Play for supported titles".
 
 ## 4. Install Proton in Steam compatibility-tools directory (required for Steam Play)
 ```bash
-$ wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/5.8-GE-2-MF/Proton-5.8-GE-2-MF.tar.gz ~/Downloads/.
-$ mkdir -p ~/.local/share/Steam/compatibilitytools.d
-$ tar xvf ~/Downloads/Proton-5.8-GE-2-MF.tar.gz -C ~/.local/share/Steam/compatibilitytools.d/
+wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/5.8-GE-2-MF/Proton-5.8-GE-2-MF.tar.gz ~/Downloads/.
+mkdir -p ~/.local/share/Steam/compatibilitytools.d
+tar xvf ~/Downloads/Proton-5.8-GE-2-MF.tar.gz -C ~/.local/share/Steam/compatibilitytools.d/
 ```
 
 ## 5. Install Protontricks
 ```bash
-$ sudo apt install python3-pip python3-setuptools python3-venv
-$ python3 -m pip install --user pipx
-$ ~/.local/bin/pipx ensurepath
-$ pipx install protontricks
-$ pipx upgrade protontricks
+sudo apt install python3-pip python3-setuptools python3-venv
+python3 -m pip install --user pipx
+~/.local/bin/pipx ensurepath
+pipx install protontricks
+pipx upgrade protontricks
 ```
 
 ## 6. Install GTA5 on Steam
@@ -64,7 +64,7 @@ NOTE: Replace `<user>` with your unix username
 ## 7. Backup GTA5 vanilla files
 Backup the freshly downloaded GTA5 game directly files somewhere where you won't forget about it, like our Desktop:
 ```bash
-$ cp -R ~/.steam/steam/steamapps/common/Grand Theft Auto V/ ~/Desktop/.
+cp -R ~/.steam/steam/steamapps/common/Grand Theft Auto V/ ~/Desktop/.
 ```
 This will help us restore from our hacks if they go wrong, so avoids downloading and installing the game each time. So anytime any of the steps from this point on go wrong, copy the backup over to the above directory where it was copied from and you should be restored to this step.
 
@@ -77,18 +77,18 @@ Contains a bunch of Windows DLLs (32 and 64bit) that replace the Direct3D 9/10/1
 
 - Extract DXVF and install x64 dlls:
 ```bash
-$ tar xvf ~/Downloads/dxvk-1.5.1.tar.gz
-$ cd dxvk-1.5.1
-$ ./setup_dxvk.sh install --without-dxgi  # Do not install DXVK's DXGI implementation and use the one provided by wine instead. This is necessary for both vkd3d and DXVK to work within the same wine prefix.
+tar xvf ~/Downloads/dxvk-1.5.1.tar.gz
+cd dxvk-1.5.1
+./setup_dxvk.sh install --without-dxgi  # Do not install DXVK's DXGI implementation and use the one provided by wine instead. This is necessary for both vkd3d and DXVK to work within the same wine prefix.
 ```
 - Also extract DXVF x64 dlls to game directory `~/.steam/steam/steamapps/common/Grand Theft Auto V`:
 ```bash
-$ cp ~/Downloads/dxvk-1.5.1/x64/d3d*.dll ~/.steam/steam/steamapps/common/Grand Theft Auto V/.
+cp ~/Downloads/dxvk-1.5.1/x64/d3d*.dll ~/.steam/steam/steamapps/common/Grand Theft Auto V/.
 ```
 
 - Configure Wine with new dlls to use native, then builtin (default override) so open it up with following command:
 ```bash
-$ WINEPREFIX=/home/<user>/.steam/steam/steamapps/compatdata/271590/pfx winecfg
+WINEPREFIX=/home/<user>/.steam/steam/steamapps/compatdata/271590/pfx winecfg
 ```
 ![Winecfg Applications](img/gta5_winecfg_applications.png)
 
@@ -111,17 +111,17 @@ Now, close the launcher: we'll fix this issue now. At least starting the launche
 
 - In a terminal, extract the contents of the Rockstar Game Launcher, and replace `<user>` with your own username below:
 ```bash
-$ file-roller ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Rockstar-Games-Launcher.exe --extract-to=/home/<user>/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/
+file-roller ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Rockstar-Games-Launcher.exe --extract-to=/home/<user>/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/
 ```
 
 - Copy the `Social-Club-Setup.exe` from Steam installation of GTA5 over to Wine installation of GTA5:
 ```bash
-$ cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-Setup.exe ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Redistributables/SocialClub/.
+cp ~/.steam/steam/steamapps/common/Grand Theft Auto V/Installers/Social-Club-Setup.exe ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Redistributables/SocialClub/.
 ``` 
 
 - Now start the launcher and you can then register/login for online play. Once done, close the launcher:
 ```bash
-$ protontricks -c 'wine ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Launcher.exe' 271590
+protontricks -c 'wine ~/.local/share/Steam/steamapps/compatdata/271590/pfx/drive_c/Program\ Files/Rockstar\ Games/Launcher/Launcher.exe' 271590
 ```
 
 ![Launcher](img/steam_launcher_fix.png)
